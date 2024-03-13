@@ -1,0 +1,134 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        div{
+          border:2px solid lightcoral;
+          border-radius: 30px;
+          padding: 20px;
+          width:300px;
+          height: 500px;
+          margin-left: 40%;
+          margin-top: 10%;
+          box-shadow: 5px 5px 10px lightsalmon;
+          
+        }
+        h1{
+            color:steelblue;
+            text-align: center;
+            text-decoration: underline;
+        }
+        form{
+            text-align: center;
+        }
+        .remark{
+            display:none;
+        }
+        p{
+            color:darkgrey;
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <br>
+        <h1>Registration Form</h1>
+        <br><br>
+    <form action="">
+        <input type="text" placeholder="username">
+        <br>
+        <span class="remark">Fill the username</span>
+        <br><br>
+        <input type="text" placeholder="example@gmail.com">
+        <br>
+        <span class="remark">Fill the email id</span>
+        <br><br>
+        <input type="text" placeholder="password">
+        <br>
+        <span class="remark">Fill the password</span>
+        <br><br>
+        <input type="text" placeholder="confirmpassword">
+        <br>
+        <span class="remark">Fill the confirmpassword</span>
+        <br>
+        <br>
+        <span class="remark">password & confirmpassword not match</span>
+        <br>
+        <input type="Submit">
+        <br>
+    </form>
+    <p>Already registered then <button>SignIn</button></p>
+    </div>
+    <script>
+     var a=document.getElementsByTagName("h1");
+     var re=document.getElementsByClassName("remark");
+     var para=document.getElementsByTagName("p");
+     var btn=document.getElementsByTagName("button");
+     var b=document.forms;
+     console.log(b[0]);
+     var arr=[];
+     b[0].addEventListener("submit",function(e){
+        e.preventDefault();
+
+        var obj={
+            username:e.target[0].value,
+            email:e.target[1].value,
+            password:e.target[2].value,
+            confirmpassword:e.target[3].value
+        }
+       if(obj.username.length==0){
+        b[0][0].style.border="2px solid red";
+        re[0].style.display="inline";
+        re[0].style.color="red";
+       }
+       if(obj.email.length==0){
+        b[0][1].style.border="2px solid red";
+        re[1].style.display="inline";
+        re[1].style.color="red";
+       }
+       if(obj.password.length==0){
+        b[0][2].style.border="2px solid red";
+        re[2].style.display="inline";
+        re[2].style.color="red";
+       }
+       if(obj.confirmpassword.length==0){
+        b[0][3].style.border="solid red";
+        re[3].style.display="inline";
+        re[3].style.color="red";
+       }
+       if(obj.password!==obj.confirmpassword){
+        b[0][2].style.border="2px solid red";
+        b[0][3].style.border="2px solid red";
+        re[4].style.display="inline";
+        re[4].style.color="red";
+       }
+       for (i=0;i<arr.length;i++)
+             {
+              if (obj.username==arr[i].username)
+              {
+                f[0][0].style.border = '2px solid purple';
+                re[1].style.display = 'inline';
+                re[1].style.color = 'purple';
+              }
+             }
+        arr.push(obj);
+        localStorage.setItem("users",JSON.stringify(arr));
+        console.log();
+        
+        e.target[0].value="";
+        e.target[1].value="";
+        e.target[2].value="";
+        e.target[3].value="";
+
+     })
+     btn[0].addEventListener("click",function(){
+        window.open("./signin.html");
+     })
+
+
+    </script>
+    
+</body>
+</html>

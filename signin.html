@@ -1,0 +1,85 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        div{
+            border:2px solid steelblue;
+            border-radius: 30px;
+            width:400px;
+            height:300px;
+        }
+        h1{
+            text-align: center;
+            color:lightslategray;
+        }
+        form{
+            text-align: center;
+        }
+        .rem{
+            display: none;
+        }
+
+    </style>
+</head>
+<body>
+    <div>
+    <h1>Sign-in Form</h1>
+    <form>
+        <input type="text" placeholder="enter name">
+        <br>
+        <span class="rem">Fill the username</span>
+        <br><br>
+        <input type="type" placeholder="enter password">
+        <br>
+        <span class="rem">Fill the password</span>
+        <br><br>
+        <span class="rem">username & password are incorrect</span>
+        <br>
+        <input type="submit" value="Signin">
+    </form>
+</div>
+    <script>
+        var a=localStorage.getItem("users");
+        var data=JSON.parse(a);
+        var div=document.getElementsByTagName("div");
+        var spn=document.getElementsByClassName("rem");
+        var d=document.forms;
+        d[0].addEventListener("submit",function(e){
+            e.preventDefault();
+            var obj1={
+                username:e.target[0].value,
+                password:e.target[1].value
+            }
+            if(obj1.username.length==0 &&  obj1.password.length==0){
+                d[0][0].style.border="2px solid red";
+                spn[0].style.display="inline";
+                spn[0].style.color="red";
+                d[0][1].style.border="2px solid red";
+                spn[1].style.display="inline";
+                spn[1].style.color="red";
+               window.close();
+            
+            }
+            else {
+            for (var i = 0; i < data.length; i++) {
+                if (obj1.username === data[i].username && obj1.password === data[i].password) {
+                    window.location.assign("https://www.google.com/");
+                    break;
+                }
+            
+
+
+            else{
+                spn[2].style.display = "inline";
+                spn[2].style.color = "red";
+            }
+            }
+        }
+            
+        });
+
+    </script>
+</body>
+</html>
